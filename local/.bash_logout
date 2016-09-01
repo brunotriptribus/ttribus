@@ -1,0 +1,1 @@
+/home/tribus/.bash_logout

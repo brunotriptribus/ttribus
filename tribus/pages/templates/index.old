@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TripTribus! Bâtisseurs de réseaux numériques</title>
+<link rel="icon" href="/static/plainTT.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/static/plainTT.ico" type="image/x-icon" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #778;
+  }
+  h3, h4 {
+      margin: 10px 0 30px 0;
+      letter-spacing: 10px;      
+      font-size: 20px;
+      color: #111;
+  }
+  .container {
+      padding: 80px 120px;
+  }
+  .container img {
+     max-width:  100%;
+     height:  auto;
+}
+  .person {
+      border: 10px solid transparent;
+      margin-bottom: 25px;
+      width: 80%;
+      height: 80%;
+      opacity: 0.7;
+  }
+  .person:hover {
+      border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+      -webkit-filter: grayscale(20%);
+      filter: grayscale(0%); /* make all photos black and white */ 
+      width: 75%; /* Set width to 100% */
+      margin: auto;
+  }
+  .carousel-inner h3 {
+      font-size: 40px;
+}
+
+  .carousel-caption h3 {
+      color: #fff !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .bg-1 {
+      background: #023270;
+      color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+  }
+    .bg-2 {
+      background: #fcfcfd;
+      color: #1b1b42;
+  }
+  .bg-2 h3 {color: #1b1b42;}
+  .bg-2 p {font-style: normal;}
+  .list-group-item:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+  }
+
+  .list-group-item:last-child {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail p {
+      margin-top: 15px;
+      color: #555;
+  }
+  .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+  }
+  .modal-header, h4, .close {
+      background-color: #333;
+      color: #fff !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-header, .modal-body {
+      padding: 40px 50px;
+  }
+  .nav-tabs li a {
+      color: #777;
+  }
+  #googleMap {
+      width: 100%;
+      height: 400px;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+  }  
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }
+  footer {
+      background-color: #2d2d30;
+      color: #f5f5f5;
+      padding: 32px;
+  }
+  footer a {
+      color: #f5f5f5;
+  }
+  footer a:hover {
+      color: #777;
+      text-decoration: none;
+  }  
+  .form-control {
+      border-radius: 0;
+  }
+  textarea {
+      resize: none;
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+   <a class="navbar-brand" href="#myPage"><img class="img-responsive" src="/static/ttpetit1.jpg" /></a> 
+  <a class="navbar-brand" href="#myPage">TripTribus</a> 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#myPage">ACCUEIL</a></li>
+        <li><a href="#band">MISSION</a></li>
+        <li><a href="#valeurs">VALEURS</a></li>
+        <li><a href="#tour">LES ARTISANS</a></li>
+        <li><a href="#obnl">OBNL</a></li>
+        <li><a href="#tribu">LA TRIBU</a></li>
+        <li><a href="#extrait">LE BLOG DES TRIPEUX</a></li>
+        <li><a href="#contact">CONTACT</a></li> 
+      </ul>
+   </div>
+  </div>
+</nav>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+       <img src="/static/montreal-downton-big.jpg" title="Photo gracieuseté de aircam.ca" alt="montreal" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>TripTribus!</h3>   
+       <p>Bâtisseurs de réseaux!</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="/static/quebec-big.jpg" title="Photo gracieuseté de aircam.ca" alt="quebec" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>TripTribus!</h3>
+          <p>Bâtisseurs de richesses!</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="/static/logo-triptribus-big.jpg" title="Logo gracieuseté de aircam.ca" alt="tt" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>TripTribus!</h3>
+          <p>Des passionnés au service<br> des tripeux en tout genre!</p>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- Container (The Band Section) -->
+<div id="band" class="container">
+<h3>Bâtisseurs de réseaux</h3>
+  <p>Bâtisseurs de réseaux, de plates-formes numériques constituées de:
+    <ul type="square">
+     <li>Fonctions d'affaires nécessaires à  l'accomplissement de tâches spécifiques à  un regroupement d'individus ayant une mission commune </li><li> Fonctionnalités dites d'analyses, de partages et de communications, nommément des visualisateurs de données, de l'intelligence d'affaires, une mécanique de partage de données et une mécanique de réseautage</li></ul> L'ensemble créé étant articulé de façon à être le plus efficace et convivial possible.<br> C'est ce que nous bâtissons chez TripTribus </p>
+  <br>
+<p class="img-responsive" style="text-align:center;"><img src="/static/TTLOGO.jpg"/></p>
+<h3>Notre mission</h3>
+  <p>Bâtir la richesse. Un réseau à la fois. Bâtir le Québec de demain. Un réseau à la fois.<br>
+Des réseaux, des écosystèmes innovants impliquant des citoyens, des cités (municipalités), des petites et moyennes entreprises.<br>
+Des réseaux où les citoyens auront un accès facile aux produits et services de ces entreprises, un accès facile aux services offerts par les municipalités.<br>
+Des réseaux incluant des moyens de communications et d'échanges entre ces citoyens, ces municipalités et ces diverses entreprises.<br>
+Des réseaux où les citoyens pourront communiquer, échanger avec leur gouvernement local, de proximité, exprimer leurs opinions, faire entendre leur voix. Participer à la vie citoyenne.<br>
+Des réseaux aux cours desquels l'éducation, la formation, la promotion de la culture entrepreneuriale, la confiance, les échanges, la communication, le partage, l'ouverture, la collaboration, occuperons une place centrale, déterminante.<br> Riche.<br>
+Ce sera là , la mission première de TripTribus. Bâtir la richesse. Un réseau à la fois. Bâtir le Québec de demain.<br>
+Un  réseau à la fois. </p>
+<br>
+</div>
+<div id="valeurs" class="container">
+<h3 style="text-align:center;">Les valeurs TripTribus</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Communication</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="/static/communication.jpg" class="img-circle person" title="by Takao Umehara from the nounproject" alt="Random Name" width="300" height="300">
+      </a>
+      <div id="demo" class="collapse">
+        <p>En tout temps. Dans le respect. Autant que possible en personne, dans le blanc des yeux,  sinon via un réseau de communication interne, communément appelé Réseau Social d'entreprises.</p>
+      </div>
+    </div>
+<div class="col-sm-4">
+      <p class="text-center"><strong>Échanges</strong></p><br>
+      <a href="#demo2" data-toggle="collapse">
+        <img src="/static/echanges.jpg" class="img-circle person" title="by Athanagore x from the nounproject" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo2" class="collapse">
+        <p>Constants. Échanges d'idées, d'informations, de données. Ouverture des données, propagation des données. Le troc du 21ième siècle. Échanges appuyés par la technologie.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Participation citoyenne. Participation artisane</strong></p><br>
+      <a href="#demo3" data-toggle="collapse">
+        <img src="/static/participation.jpg" class="img-circle person" title="by Juan Michael Rojas from the nounproject" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo3" class="collapse">
+        <p>Impératif. 'No one left behind'. Tous auront leur mot à dire, tous seront écoutés. Tous seront encouragés à participer à l'élaboration, à la création des réseaux.
+Pas d'exécutants chez TripTribus. Que des participants. Actifs. Vivants.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Éducation/Formation</strong></p><br>
+      <a href="#demo4" data-toggle="collapse">
+        <img src="/static/education.jpg" class="img-circle person" title="by Hawaii Open Data, US from the nounproject" alt="Random Name" width="300" height="300">
+      </a>
+      <div id="demo4" class="collapse">
+        <p>Chez TripTribus plutôt qualifiés de transmission du savoir. Des sages aux expérimentés. Des expérimentés aux jeunes. Mais aussi l'inverse. Des jeunes aux expérimentés, des expérimentés aux sages, qui,  dans leur sagesse,  savent que l'on apprend toujours.
+Transmission du savoir de TripTribus vers la tribu des municipalités, des organismes, des regroupements.
+Mais aussi l'inverse.
+Transmission de la sagesse des municipalités, des organismes, des regroupements vers TripTribus. Essentiel si nous voulons construire ensemble.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Promotion de la culture entrepreneuriale</strong></p><br>
+      <a href="#demo5" data-toggle="collapse">
+        <img src="/static/entrepreneur.jpg" class="img-square person" title="by Creative Stall from the nounproject" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo5" class="collapse">
+        <p>Chez TripTribus pas de la promotion au sens d'encourager passivement par la publicité ou le marketing. Promouvoir par l'action. Il y  une mécanique interne favorisant, stimulant, supportant les initiatives entrepreneuriales individuelles ou provenant d'un petit groupe d'artisans. Une idée géniale couplée à un profond désir de la voir se réaliser ? Du temps est alloué à la préparation d'une présentation de cette idée aux autres artisans. Les meilleures idées sont retenues et tout est alors mis en oeuvre pour concevoir, concrétiser cette idée géniale.  Ces entrepreneurs en devenir sont encadrés et guidés à l'interne. Objectif visé ? Créer la richesse. Espérer que ceux-ci auront envie de voler de leurs propres ailes et voir ainsi l'esprit TripTribus se propager à l'extérieur de ces murs.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Confiance</strong></p><br>
+      <a href="#demo6" data-toggle="collapse">
+        <img src="/static/confiance.jpg" class="img-square person" title="by Juan Pablo Bravo from the nounproject" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo6" class="collapse">
+        <p>Maître-mot. Sans elle, rien de tout ce qui a été exprimé plus haut n'a de valeur. Sans confiance en ces citoyens-artisans, TripTribus n'existe pas. Sans confiance envers toute la richesse des citoyens du monde, du monde municipal aux mondes de par-delà  nos frontières, TripTribus n'existe pas. Sans confiance dans un futur prospère TripTribus n'existe pas.</p>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- Container (TOUR Section) -->
+<div id="tour" class="bg-1">
+  <div class="container">
+    <h3 class="text-center">Les artisans TripTribus!</h3>
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="/static/20140911_0406_97510.jpg" alt="bruno" width="400" height="300">
+          <p><strong>Bruno Fernandez</strong></p>
+          <p>Chef de la tribu TripTribus</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="/static/monteregie.jpg"  alt="dan" width="400" height="300">
+          <p><strong>Dan</strong></p>
+          <p>Architecte de la tribu</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="/static/bonsecours.jpg" alt="claudine" width="400" height="300">
+          <p><strong>Claudine</strong></p>
+          <p>Cook des tripeux! </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<div id="obnl" class=bg-2>
+<div class="container">
+      <h3>Organisme à but non lucratif</h3>
+  <p>TripTribus, des entrepreneurs sociaux aussi entreprenants sinon plus que ceux n'ayant pas le qualificatif de social parce que travaillant ultimement pour eux-mêmes, leurs familles, leurs communautés, leurs municipalités, les citoyens qui les composent et non pas pour un quelconque actionnaire.<br>Avec passion.<br>TripTribus, des citoyens-artisans ne faisant pas dans l'artisanat. De vrais professionnels ne se contentant pas d'un bon salaire et de bonnes conditions de travail.<br>De vrais professionnels qui veulent aller plus loin et repousser les limites du travail bien fait inhérent à leur corps de métier respectifs, gestionnaires, architectes, analystes, chefs de projets, programmeurs, etc...<br>Il ne faut pas s'y tromper. Qui dit organisme à but non lucratif ne dit pas ici organisme faisant la charité. Les artisans TripTribus ont des salaires compétitifs et comparables au marché. Et si nous sommes capables d'aller chercher des millions en revenus (à ne pas confondre avec profits), nous le ferons avec acharnement et passion. Ces revenus seront alors réinvestis dans la création d'autres réseaux numériques. Et s'il y a des surplus ceux-ci seront redistribués dans la collectivité.<br>Création et maintien de dizaines, voire de centaines d'emplois intéressants et bien rémunérés tant et aussi longtemps que la demande pour le produit et service créé est au rendez-vous. Produits et services aux coûts de production comparable au marché, vendus à des prix comparables au marché. Seule différence et elle est cruciale pour nous chez TripTribus, l'objectif visé n'est pas d'obtenir le maximum de rendement sur les capitaux investis mais bien d'enrichir la collectivité, de toutes les façons possibles. Sans ambiguités. Ashoka, le plus grand réseau d'entrepreneurs sociaux au monde qualifie les dits entrepreneurs sociaux en ces termes :<br><ul type="square"><li>Social entrepreneurs are individuals with innovative solutions to society's most pressing social problems.</li><li>They are ambitious and persistent, tackling major social issues and offering new ideas for wide-scale change.</li></ul>Chez TripTribus nous nous reconnaissons dans cette définition.<br>Passionnés, ambitieux, entêtés.<br>Entrepreneurs.<br>Au service de la collectivité.<br>Et l'ampleur du défi qui nous attend ne nous fait pas peur.Au contraire.Elle nous motive.  </p>
+  <br>
+</div>
+</div>
+<div id="tribu" class=bg-1>
+<div class="container">
+  <h3>La Tribu TripTribus</h3>
+  <p>La famille TripTribus. Le village TripTribus. TripTribus, milieu de vie.<br>Nous ne pourrions prétendre à vouloir bâtir des réseaux prônant<ul type="square"><li>la communication</li><li>les échanges</li><li>la participation citoyenne</li><li>l'éducation</li><li>la formation</li><li>la promotion de la culture entrepreneuriale</li><li>la confiance</li><li>le partage</li><li>l'ouverture</li><li>la collaboration</li></ul> sans nous-mêmes appliquer ces principes, ces états d'esprits, cette philosophie au coeur même de notre quotidien.<br>Quotidien non pas constitué d'un 9 à 5 rigide et régulé mais d'un incessant mouvement à toutes heures du jour. De jour, de soir, de nuit pourquoi pas. Pour accommoder les nouvelles réalités modernes.<br>Quotidien non pas constitué d'une ambiance feutrée et convenue mais de ce que doit être constitué un milieu de vie foisonnant, énergique, engagé. De bruits. De discussions animées, ouvertes.<br>De coups de gueules, de cris, de pleurs. Murmures d'un labeur passionné et passionnant.<br>Murmures de la vie.<br>Quotidien non pas seulement constitué de professionnels sérieux et concentrés mais de doux babils, de rires d'enfants. De citoyens-artisans et leurs familles. Espace vivant.<br>Quotidien aux couleurs, aux odeurs, aux saveurs variées. Riches. Quotidien peuplé de communautés aux multiples horizons, aux multiples regards.<br>Quotidien de jeunes citoyens-artisans ambitieux et dynamiques. Quotidien de citoyens-artisans expérimentés pour guider les plus jeunes.<br>Quotidien de sages citoyens-artisans aspirant plus à la vie qu'au repos,  partageant leurs vastes expériences aux plus jeunes. Inspiration pour l'ensemble de la tribu. Sagesse.En ces temps de cynisme, de pertes de repères, et dans une certaine mesure d'individualisme, sans confiance envers son prochain et à son futur, TripTribus n'existe pas.<br>Nous vivons à une époque ou pour diverses raisons nous passons plus de temps au travail qu'avec notre propre famille. Il nous apparaît donc essentiel de faire sauter les cloisons entre famille et boulot. De faire en sorte que les 2 univers se côtoient au plus près. Pour passer plus de temps avec notre propre famille tout en participant activement à la prospérité du village.<br>De la tribu TripTribus.</p>
+  <br>
+</div>
+</div>  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"></button>
+          <h4><span class="glyphicon glyphicon-lock"></span> person</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-shopping-cart"></span> person</label>
+              <input type="number" class="form-control" id="psw" placeholder="person">
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> person</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+              <button type="submit" class="btn btn-block">person 
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> person
+          </button>
+          <p>person <a href="#">person</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Container (Contact Section) -->
+<div id="extrait" class="container">
+  <h3 class="text-center">Tirés du Blog des Tripeux</h3>
+  <ul class="nav nav-tabs">
+    <li class="active"><a class="text-center" data-toggle="tab" href="#home">Bruno</a></li>
+    <li><a data-toggle="tab" href="#menu1">DanP</a></li>
+    <li><a data-toggle="tab" href="#menu2">Claudine</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2 class="text-center">Bruno</h2>
+         <p>Mouvement citoyen au coeur duquel l'éducation, la formation, la promotion de la culture entrepreneuriale, la confiance, les échanges, la communication, le partage, l'ouverture, la collaboration, occupent une place centrale, déterminante. Riche.</p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h2>DanP, citoyen</h2>
+      <p>Mouvement citoyen au coeur duquel l'éducation, la formation, la promotion de la culture entrepreneuriale, la confiance, les échanges, la communication, le partage, l'ouverture, la collaboration, occupent une place centrale, déterminante. Riche.</p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h2>Claudine, citoyenne</h2>
+      <p>Mouvement citoyen au coeur duquel l'éducation, la formation, la promotion de la culture entrepreneuriale, la confiance, les échanges, la communication, le partage, l'ouverture, la collaboration, occupent une place centrale, déterminante. Riche.</p>
+    </div>
+</div>
+<br>
+
+  <div class=bg-1>
+  <div class="container">
+    <h3>Découvrez les passions!</h3>
+    <h3>Des tripeux de chez TripTribus!</h3> 
+    <h3><a href="http://blog.triptribus.com" target="_blank" data-toggle="tooltip" title="Visitez le blog des tripeux!">blog.triptribus.com</a></h3>
+  </div>
+  </div> 
+<br>
+<br>
+ 
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+       <h3 class="text-center">Quartier Général de la Tribu TripTribus</h3>
+     <p></p>
+    </div>
+  </div>
+</div>
+<div id="googleMap"></div>
+<!-- Add Google Maps -->
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+var myCenter = new google.maps.LatLng(45.2333, -73.0167);
+
+function initialize() {
+var mapProp = {
+center:myCenter,
+zoom:12,
+scrollwheel:false,
+draggable:false,
+mapTypeId:google.maps.MapTypeId.ROADMAP
+};
+
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var marker = new google.maps.Marker({
+position:myCenter,
+});
+
+marker.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<div id="contact" class="container">
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center"><em>Pour toute question ou intérêt ne pas hésiter à nous contacter à cette adresse courriel</em></p><br>
+   <p class="text-center"><span class="glyphicon glyphicon-envelope"></span>  <a class="text-center" href="mailto:contact@triptribus.com">contact@triptribus.com</a></p>
+<p class="img-responsive" style="text-align:center;"><img src="/static/Btir_richesse3.jpg"/></p>
+</div>
+
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Site opéré par <a href="http://www.triptribus.com" data-toggle="tooltip" title="Visitez triptribus">www.triptribus.com</a></p> 
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 900, function(){
+   
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+    });
+  });
+})
+</script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//monitoring.triptribus.com/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 4]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//monitoring.triptribus.com/piwik/piwik.php?idsite=4" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>
+
